@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.warren.fleet.security.mapper.UserDao">
+
+    <resultMap id="userMap" type="com.warren.fleet.security.bean.User">
+        <id column="uid" property="uid" />
+        <result column="uname" property="uname"/>
+        <result column="upasswd" property="upasswd"/>
+        <collection property="roles" ofType="com.warren.fleet.security.bean.Role">
+            <result column="rname" property="rname"/>
+        </collection>
+    </resultMap>
+
+    <select id="findByUserName" parameterType="String" resultMap="userMap">
+        select *
+        from user
+        left join user_role on user.uid = user_role.uid
+        left join role on user_role.rid = role.rid
+        where user.uname = #{username};
+    </select>
+
+    <select id="findUserOnlyByName" parameterType="String" resultType="com.warren.fleet.security.bean.User">
+        select * from user where uname = #{username};
+    </select>
+
+    <insert id="insertUser" parameterType="com.warren.fleet.security.bean.User">
+        insert into user (uname,upasswd) values (#{uname},#{upasswd});
+    </insert>
+
+    <insert id="insertUserRole" parameterType="int">
+        insert into user_role (uid,rid) values (#{uid},#{rid});
+    </insert>
+
+</mapper>
