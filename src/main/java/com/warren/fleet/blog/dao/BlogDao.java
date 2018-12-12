@@ -1,12 +1,12 @@
-package com.warren.fleet.mapper;
+package com.warren.fleet.blog.dao;
 
-import com.warren.fleet.model.Blog;
+import com.warren.fleet.blog.model.Blog;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface BlogMapper {
+public interface BlogDao {
     public Blog selectBlogByBid(int bid);
 
     public List<Blog> selectAllBlogs();

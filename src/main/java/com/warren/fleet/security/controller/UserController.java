@@ -1,20 +1,12 @@
-package com.warren.fleet.controller;
+package com.warren.fleet.security.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.warren.fleet.model.User;
-import com.warren.fleet.service.UserService;
+import com.warren.fleet.blog.model.User;
+import com.warren.fleet.blog.service.UserService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.validation.Valid;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/user")

@@ -3,16 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.warren.fleet.mapper.UserMapper">
+<mapper namespace="com.warren.fleet.blog.dao.UserDao">
 
 
     <!--insert user-->
-    <insert id="insert" useGeneratedKeys="true" keyProperty="uid" parameterType="com.warren.fleet.model.User">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="uid" parameterType="com.warren.fleet.blog.model.User">
         insert into user (uname,upasswd) values (#{uname},#{upasswd});
     </insert>
 
     <!--update user-->
-    <update id="update" parameterType="com.warren.fleet.model.User">
+    <update id="update" parameterType="com.warren.fleet.blog.model.User">
         update user set uname=#{uname},upasswd=#{upasswd} where uid = #{uid};
     </update>
 
@@ -20,11 +20,11 @@
         delete from user where uid = #{uid};
     </delete>
 
-    <select id="selectByUid" parameterType="int" resultType="com.warren.fleet.model.User">
+    <select id="selectByUid" parameterType="int" resultType="com.warren.fleet.blog.model.User">
         select uid,uname,upasswd from user where uid = #{uid};
     </select>
 
-    <resultMap id="allUser" type="com.warren.fleet.model.User">
+    <resultMap id="allUser" type="com.warren.fleet.blog.model.User">
         <id property="uid" column="uid" />
         <result column="uname" property="uname" />
         <result column="upasswd" property="upasswd" />

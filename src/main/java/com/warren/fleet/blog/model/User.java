@@ -1,4 +1,4 @@
-package com.warren.fleet.model;
+package com.warren.fleet.blog.model;
 
 import java.io.Serializable;
 import java.util.List;
@@ -43,10 +43,4 @@ public class User implements Serializable {
         this.blogs = blogs;
     }
 
-    @Override
-    public String toString(){
-        return "uid:" + uid +"\n"
-                +"uname:" + uname +"\n"
-                +"upasswd:" + upasswd;
-    }
 }

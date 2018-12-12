@@ -1,14 +1,11 @@
-package com.warren.fleet.controller;
+package com.warren.fleet.blog.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.warren.fleet.model.Blog;
-import com.warren.fleet.service.BlogService;
+import com.warren.fleet.blog.model.Blog;
+import com.warren.fleet.blog.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 @RestController

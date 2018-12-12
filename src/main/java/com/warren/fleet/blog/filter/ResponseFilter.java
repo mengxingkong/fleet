@@ -1,11 +1,10 @@
-package com.warren.fleet.filter;
+package com.warren.fleet.blog.filter;
 
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 @WebFilter(filterName = "responseFilter",
         urlPatterns = {"/blog/allBlogs","/test/test"})

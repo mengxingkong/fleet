@@ -1,4 +1,4 @@
-package com.warren.fleet.controller;
+package com.warren.fleet.blog.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

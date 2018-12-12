@@ -1,4 +1,4 @@
-package com.warren.fleet.controller;
+package com.warren.fleet.security.controller;
 
 import com.warren.fleet.security.bean.Role;
 import com.warren.fleet.security.bean.User;

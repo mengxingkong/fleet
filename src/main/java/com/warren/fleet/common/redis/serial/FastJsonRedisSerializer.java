@@ -1,4 +1,4 @@
-package com.warren.fleet.redis.serial;
+package com.warren.fleet.common.redis.serial;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;

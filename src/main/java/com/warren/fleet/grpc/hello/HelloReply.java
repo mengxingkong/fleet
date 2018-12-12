@@ -70,14 +70,14 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.warren.fleet.grpc.hello.HelloProto.internal_static_helloworld_HelloReply_descriptor;
+    return HelloProto.internal_static_helloworld_HelloReply_descriptor;
   }
 
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.warren.fleet.grpc.hello.HelloProto.internal_static_helloworld_HelloReply_fieldAccessorTable
+    return HelloProto.internal_static_helloworld_HelloReply_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.warren.fleet.grpc.hello.HelloReply.class, com.warren.fleet.grpc.hello.HelloReply.Builder.class);
+            HelloReply.class, HelloReply.Builder.class);
   }
 
   public static final int MESSAGE_FIELD_NUMBER = 1;
@@ -150,10 +150,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.warren.fleet.grpc.hello.HelloReply)) {
+    if (!(obj instanceof HelloReply)) {
       return super.equals(obj);
     }
-    com.warren.fleet.grpc.hello.HelloReply other = (com.warren.fleet.grpc.hello.HelloReply) obj;
+    HelloReply other = (HelloReply) obj;
 
     boolean result = true;
     result = result && getMessage()
@@ -176,69 +176,69 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static com.warren.fleet.grpc.hello.HelloReply parseFrom(
+  public static HelloReply parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.warren.fleet.grpc.hello.HelloReply parseFrom(
+  public static HelloReply parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.warren.fleet.grpc.hello.HelloReply parseFrom(
+  public static HelloReply parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.warren.fleet.grpc.hello.HelloReply parseFrom(
+  public static HelloReply parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.warren.fleet.grpc.hello.HelloReply parseFrom(byte[] data)
+  public static HelloReply parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.warren.fleet.grpc.hello.HelloReply parseFrom(
+  public static HelloReply parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.warren.fleet.grpc.hello.HelloReply parseFrom(java.io.InputStream input)
+  public static HelloReply parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.warren.fleet.grpc.hello.HelloReply parseFrom(
+  public static HelloReply parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.warren.fleet.grpc.hello.HelloReply parseDelimitedFrom(java.io.InputStream input)
+  public static HelloReply parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static com.warren.fleet.grpc.hello.HelloReply parseDelimitedFrom(
+  public static HelloReply parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.warren.fleet.grpc.hello.HelloReply parseFrom(
+  public static HelloReply parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.warren.fleet.grpc.hello.HelloReply parseFrom(
+  public static HelloReply parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -250,7 +250,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.warren.fleet.grpc.hello.HelloReply prototype) {
+  public static Builder newBuilder(HelloReply prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   public Builder toBuilder() {
@@ -270,20 +270,20 @@ private static final long serialVersionUID = 0L;
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
       // @@protoc_insertion_point(builder_implements:helloworld.HelloReply)
-      com.warren.fleet.grpc.hello.HelloReplyOrBuilder {
+          HelloReplyOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.warren.fleet.grpc.hello.HelloProto.internal_static_helloworld_HelloReply_descriptor;
+      return HelloProto.internal_static_helloworld_HelloReply_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.warren.fleet.grpc.hello.HelloProto.internal_static_helloworld_HelloReply_fieldAccessorTable
+      return HelloProto.internal_static_helloworld_HelloReply_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.warren.fleet.grpc.hello.HelloReply.class, com.warren.fleet.grpc.hello.HelloReply.Builder.class);
+              HelloReply.class, HelloReply.Builder.class);
     }
 
-    // Construct using com.warren.fleet.grpc.hello.HelloReply.newBuilder()
+    // Construct using HelloReply.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -307,23 +307,23 @@ private static final long serialVersionUID = 0L;
 
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.warren.fleet.grpc.hello.HelloProto.internal_static_helloworld_HelloReply_descriptor;
+      return HelloProto.internal_static_helloworld_HelloReply_descriptor;
     }
 
-    public com.warren.fleet.grpc.hello.HelloReply getDefaultInstanceForType() {
-      return com.warren.fleet.grpc.hello.HelloReply.getDefaultInstance();
+    public HelloReply getDefaultInstanceForType() {
+      return HelloReply.getDefaultInstance();
     }
 
-    public com.warren.fleet.grpc.hello.HelloReply build() {
-      com.warren.fleet.grpc.hello.HelloReply result = buildPartial();
+    public HelloReply build() {
+      HelloReply result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
 
-    public com.warren.fleet.grpc.hello.HelloReply buildPartial() {
-      com.warren.fleet.grpc.hello.HelloReply result = new com.warren.fleet.grpc.hello.HelloReply(this);
+    public HelloReply buildPartial() {
+      HelloReply result = new HelloReply(this);
       result.message_ = message_;
       onBuilt();
       return result;
@@ -356,16 +356,16 @@ private static final long serialVersionUID = 0L;
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.warren.fleet.grpc.hello.HelloReply) {
-        return mergeFrom((com.warren.fleet.grpc.hello.HelloReply)other);
+      if (other instanceof HelloReply) {
+        return mergeFrom((HelloReply)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.warren.fleet.grpc.hello.HelloReply other) {
-      if (other == com.warren.fleet.grpc.hello.HelloReply.getDefaultInstance()) return this;
+    public Builder mergeFrom(HelloReply other) {
+      if (other == HelloReply.getDefaultInstance()) return this;
       if (!other.getMessage().isEmpty()) {
         message_ = other.message_;
         onChanged();
@@ -383,11 +383,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.warren.fleet.grpc.hello.HelloReply parsedMessage = null;
+      HelloReply parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.warren.fleet.grpc.hello.HelloReply) e.getUnfinishedMessage();
+        parsedMessage = (HelloReply) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -480,12 +480,12 @@ private static final long serialVersionUID = 0L;
   }
 
   // @@protoc_insertion_point(class_scope:helloworld.HelloReply)
-  private static final com.warren.fleet.grpc.hello.HelloReply DEFAULT_INSTANCE;
+  private static final HelloReply DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.warren.fleet.grpc.hello.HelloReply();
+    DEFAULT_INSTANCE = new HelloReply();
   }
 
-  public static com.warren.fleet.grpc.hello.HelloReply getDefaultInstance() {
+  public static HelloReply getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
@@ -508,7 +508,7 @@ private static final long serialVersionUID = 0L;
     return PARSER;
   }
 
-  public com.warren.fleet.grpc.hello.HelloReply getDefaultInstanceForType() {
+  public HelloReply getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

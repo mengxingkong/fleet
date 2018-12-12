@@ -1,4 +1,4 @@
-package com.warren.fleet.filter;
+package com.warren.fleet.blog.filter;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.WriteListener;

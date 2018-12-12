@@ -1,21 +1,17 @@
-package com.warren.fleet.mapper;
-import com.warren.fleet.model.User;
-import org.springframework.cache.annotation.Cacheable;
+package com.warren.fleet.blog.dao;
+import com.warren.fleet.blog.model.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
 @Repository
-public interface UserMapper {
+public interface UserDao {
 
     public int insert(User user);
 
     public void update(User user);
 
     public void delete(int id);
-
-
 
     public User selectByUid(int uid);
 
