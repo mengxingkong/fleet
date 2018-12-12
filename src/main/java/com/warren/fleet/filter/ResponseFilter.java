@@ -11,6 +11,9 @@ import java.nio.charset.StandardCharsets;
         urlPatterns = {"/blog/allBlogs","/test/test"})
 public class ResponseFilter implements Filter {
 
+    //@ServletComponentScan is required to add on FleetApplication
+
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
