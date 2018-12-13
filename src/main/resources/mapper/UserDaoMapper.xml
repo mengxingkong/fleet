@@ -3,13 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.warren.fleet.security.mapper.UserDao">
+<mapper namespace="com.warren.fleet.security.dao.UserDao">
 
-    <resultMap id="userMap" type="com.warren.fleet.security.bean.User">
+    <resultMap id="userMap" type="com.warren.fleet.security.domain.User">
         <id column="uid" property="uid" />
         <result column="uname" property="uname"/>
         <result column="upasswd" property="upasswd"/>
-        <collection property="roles" ofType="com.warren.fleet.security.bean.Role">
+        <collection property="roles" ofType="com.warren.fleet.security.domain.Role">
             <result column="rname" property="rname"/>
         </collection>
     </resultMap>
@@ -22,11 +22,11 @@
         where user.uname = #{username};
     </select>
 
-    <select id="findUserOnlyByName" parameterType="String" resultType="com.warren.fleet.security.bean.User">
+    <select id="findUserOnlyByName" parameterType="String" resultType="com.warren.fleet.security.domain.User">
         select * from user where uname = #{username};
     </select>
 
-    <insert id="insertUser" parameterType="com.warren.fleet.security.bean.User">
+    <insert id="insertUser" parameterType="com.warren.fleet.security.domain.User">
         insert into user (uname,upasswd) values (#{uname},#{upasswd});
     </insert>
 

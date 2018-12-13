@@ -5,35 +5,39 @@
 
 <mapper namespace="com.warren.fleet.blog.dao.UserDao">
 
-
-    <!--insert user-->
-    <insert id="insert" useGeneratedKeys="true" keyProperty="uid" parameterType="com.warren.fleet.blog.model.User">
-        insert into user (uname,upasswd) values (#{uname},#{upasswd});
-    </insert>
-
-    <!--update user-->
-    <update id="update" parameterType="com.warren.fleet.blog.model.User">
-        update user set uname=#{uname},upasswd=#{upasswd} where uid = #{uid};
-    </update>
-
-    <delete id="delete" parameterType="int">
-        delete from user where uid = #{uid};
-    </delete>
-
-    <select id="selectByUid" parameterType="int" resultType="com.warren.fleet.blog.model.User">
-        select uid,uname,upasswd from user where uid = #{uid};
-    </select>
-
-    <resultMap id="allUser" type="com.warren.fleet.blog.model.User">
+    <resultMap id="userMap" type="com.warren.fleet.blog.model.User">
         <id property="uid" column="uid" />
         <result column="uname" property="uname" />
         <result column="upasswd" property="upasswd" />
     </resultMap>
-    <select id="selectAll" resultMap="allUser">
-        select uid,uname,upasswd from user;
+
+    <select id="selectUserByName" parameterType="String" resultType="userMap">
+        select *
+        from user
+        where uname = #{param1};
     </select>
 
+    <select id="selectAll" resultMap="userMap">
+        select *
+        from user;
+    </select>
 
+    <insert id="addUser" parameterType="String" keyProperty="id" useGeneratedKeys="true">
+        insert
+        into sys_user(uname,upasswd)
+        values(#{param1},#{param2})
+    </insert>
+
+    <delete id="delete" parameterType="String">
+        delete
+        from user
+        where uname = #{param1};
+    </delete>
+
+
+
+
+    <!--保留之前的多表连接操作-->
     <resultMap id="UserBlogs" type="User">
         <id column="uid" property="uid" />
         <result column="uname" property="uname"/>
@@ -48,15 +52,12 @@
             <result column="author" property="author" />
         </collection>
     </resultMap>
-    <select id="selectBlogs" parameterType="int" resultMap="UserBlogs">
-        select *
-        from user,blog
-        where uid=#{uid} and user.uid = blog.author;
-    </select>
-
-
-<!--select user.*,blog.*-->
-    <!--from user-->
-    <!--left join-->
-    <!--where-->
+    <!--insert user-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="uid" parameterType="com.warren.fleet.blog.model.User">
+        insert into user (uname,upasswd) values (#{uname},#{upasswd});
+    </insert>
+    <!--update user-->
+    <update id="update" parameterType="com.warren.fleet.blog.model.User">
+        update user set uname=#{uname},upasswd=#{upasswd} where uid = #{uid};
+    </update>
 </mapper>

@@ -1,12 +1,9 @@
 package com.warren.fleet.security.controller;
 
-import com.warren.fleet.security.bean.Role;
-import com.warren.fleet.security.bean.User;
-import com.warren.fleet.security.mapper.UserDao;
+import com.warren.fleet.security.domain.User;
 import com.warren.fleet.security.requestBody.JwtAuthenticationRequest;
 import com.warren.fleet.security.response.JwtAuthenticationResponse;
 import com.warren.fleet.security.service.AuthService;
-import com.warren.fleet.security.service.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/auth")

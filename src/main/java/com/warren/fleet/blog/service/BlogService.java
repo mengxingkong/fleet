@@ -22,12 +22,11 @@ public class BlogService {
     }
 
     public void updateBlog(Blog blog){
-
         blog.setUpdatetime( CurrentTimeUtil.format( new Date() ) );
         blogDao.update(blog);
     }
 
-    public Blog selectBlogByBid(int bid){
-        return blogDao.selectBlogByBid(bid);
+    public Blog selectBlogByBid(String bioid){
+        return blogDao.selectBlogByBloid( bioid );
     }
 }

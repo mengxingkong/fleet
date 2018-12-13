@@ -1,4 +1,4 @@
-package com.warren.fleet.security.bean;
+package com.warren.fleet.security.domain;
 
 import java.util.List;
 

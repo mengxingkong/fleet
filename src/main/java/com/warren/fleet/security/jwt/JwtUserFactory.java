@@ -1,7 +1,7 @@
 package com.warren.fleet.security.jwt;
 
-import com.warren.fleet.security.bean.Role;
-import com.warren.fleet.security.bean.User;
+import com.warren.fleet.security.domain.Role;
+import com.warren.fleet.security.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 

@@ -1,6 +1,6 @@
-package com.warren.fleet.security.mapper;
+package com.warren.fleet.security.dao;
 
-import com.warren.fleet.security.bean.Role;
+import com.warren.fleet.security.domain.Role;
 import org.springframework.stereotype.Repository;
 
 @Repository

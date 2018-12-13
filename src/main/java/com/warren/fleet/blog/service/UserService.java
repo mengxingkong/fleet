@@ -12,27 +12,20 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    UserDao userMapper;
+    UserDao userDao;
 
-    @Cacheable(value = "user", key = "'user_'+#uid")
-    public User selectUserByUid(int uid){
+    @Cacheable(value = "user", key = "'user_'+#uname")
+    public User selectUserByUname(String uname){
         System.out.println("没有从缓存读取数据");
-        return userMapper.selectByUid(uid);
+        return userDao.selectUserByName(uname);
     }
 
     @Cacheable(value = "user",key = "#root.methodName")
     public List<User> selectAllUser(){
-        return userMapper.selectAll();
-    }
-    public void addUser(User user){
-        int uid = userMapper.insert(user);
-        System.out.println(uid); //??????
-    }
-    public void update(User user){
-        userMapper.update(user);
+        return userDao.selectAll();
     }
 
-    public List<User> selectUserBlogs(int uid){
-        return userMapper.selectBlogs(uid);
+    public void addUser(String uname,String upasswd){
+        userDao.addUser(uname,upasswd);
     }
 }

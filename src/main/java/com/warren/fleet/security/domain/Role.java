@@ -1,4 +1,4 @@
-package com.warren.fleet.security.bean;
+package com.warren.fleet.security.domain;
 
 /**
  * Created by yangyibo on 17/1/17.

@@ -1,20 +1,13 @@
 package com.warren.fleet.security.service;
 
-import com.warren.fleet.security.bean.Role;
-import com.warren.fleet.security.bean.User;
-import com.warren.fleet.security.bean.UserInfo;
+import com.warren.fleet.security.domain.User;
 import com.warren.fleet.security.jwt.JwtUserFactory;
-import com.warren.fleet.security.mapper.UserDao;
+import com.warren.fleet.security.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class MyUserDetailService implements UserDetailsService {

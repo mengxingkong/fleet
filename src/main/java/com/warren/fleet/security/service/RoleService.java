@@ -1,7 +1,7 @@
 package com.warren.fleet.security.service;
 
-import com.warren.fleet.security.bean.Role;
-import com.warren.fleet.security.mapper.RoleMapper;
+import com.warren.fleet.security.domain.Role;
+import com.warren.fleet.security.dao.RoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -7,15 +7,16 @@ import java.util.List;
 @Repository
 public interface UserDao {
 
-    public int insert(User user);
-
-    public void update(User user);
-
-    public void delete(int id);
-
-    public User selectByUid(int uid);
+    public User selectUserByName(String uname);
 
     public List<User> selectAll();
 
-    public List<User> selectBlogs(int uid);
+    public void delete(String uname);
+
+    public void addUser(String uname,String npasswd);
+
+
+    //保留之前使用对象进行插入更新的操作
+    public int insert(User user);
+    public void update(User user);
 }

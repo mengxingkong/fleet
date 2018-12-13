@@ -5,17 +5,19 @@ import java.util.List;
 
 public class User implements Serializable {
 
-    private int uid;
+    private static final long serialVersionUID = -953600035074775419L;
+
+    private Integer uid;
     private String uname;
     private String upasswd;
 
     private List<Blog> blogs;
 
-    public int getUid() {
+    public Integer getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(Integer uid) {
         this.uid = uid;
     }
 

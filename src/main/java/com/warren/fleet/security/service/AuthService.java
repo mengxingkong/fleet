@@ -1,9 +1,9 @@
 package com.warren.fleet.security.service;
 
-import com.warren.fleet.security.bean.User;
+import com.warren.fleet.security.domain.User;
 import com.warren.fleet.security.jwt.JwtTokenUtil;
 import com.warren.fleet.security.jwt.JwtUser;
-import com.warren.fleet.security.mapper.UserDao;
+import com.warren.fleet.security.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,7 +11,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 import org.springframework.stereotype.Service;
 
