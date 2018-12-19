@@ -1,7 +1,7 @@
 package com.warren.fleet.blog.service;
 
 import com.warren.fleet.blog.dao.UserDao;
-import com.warren.fleet.blog.model.User;
+import com.warren.fleet.blog.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;

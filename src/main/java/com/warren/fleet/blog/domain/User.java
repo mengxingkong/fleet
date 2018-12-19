@@ -1,16 +1,17 @@
-package com.warren.fleet.security.domain;
+package com.warren.fleet.blog.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by yangyibo on 17/1/17.
- */
+public class User implements Serializable {
 
-public class User {
+    private static final long serialVersionUID = -953600035074775419L;
+
     private Integer uid;
     private String uname;
     private String upasswd;
-    private List<Role> roles;
+
+    private List<Blog> blogs;
 
     public Integer getUid() {
         return uid;
@@ -36,11 +37,12 @@ public class User {
         this.upasswd = upasswd;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public List<Blog> getBlogs() {
+        return blogs;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setBlogs(List<Blog> blogs) {
+        this.blogs = blogs;
     }
+
 }

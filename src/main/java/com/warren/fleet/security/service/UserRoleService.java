@@ -1,8 +1,8 @@
 package com.warren.fleet.security.service;
 
-import com.warren.fleet.security.domain.Role;
-import com.warren.fleet.security.domain.User;
-import com.warren.fleet.security.dao.UserDao;
+import com.warren.fleet.security.domain.SysRole;
+import com.warren.fleet.security.domain.SysUser;
+import com.warren.fleet.security.dao.SysUserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,15 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserRoleService {
 
     @Autowired
-    private UserDao userDao;
+    private SysUserDao userDao;
     @Autowired
     private RoleService roleService;
 
     @Transactional
-    public User inserUserRole(User user, String rolename){
+    public SysUser inserUserRole(SysUser user, String rolename){
         userDao.insertUser(user);
         user = userDao.findUserOnlyByName(user.getUname());
-        Role role = roleService.selectRoleByName(rolename);
+        SysRole role = roleService.selectRoleByName(rolename);
         userDao.insertUserRole(user.getUid(),role.getRid());
         return user;
     }

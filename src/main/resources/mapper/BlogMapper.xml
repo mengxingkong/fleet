@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.warren.fleet.blog.dao.BlogDao">
 
-    <resultMap id="BlogMap" type="com.warren.fleet.blog.model.Blog">
+    <resultMap id="BlogMap" type="com.warren.fleet.blog.domain.Blog">
         <id column="id" property="id" />
         <result column="author" property="author" />
         <result column="content" property="content" />

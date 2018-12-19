@@ -5,7 +5,7 @@
 
 <mapper namespace="com.warren.fleet.blog.dao.UserDao">
 
-    <resultMap id="userMap" type="com.warren.fleet.blog.model.User">
+    <resultMap id="userMap" type="com.warren.fleet.blog.domain.User">
         <id property="uid" column="uid" />
         <result column="uname" property="uname" />
         <result column="upasswd" property="upasswd" />
@@ -53,11 +53,11 @@
         </collection>
     </resultMap>
     <!--insert user-->
-    <insert id="insert" useGeneratedKeys="true" keyProperty="uid" parameterType="com.warren.fleet.blog.model.User">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="uid" parameterType="com.warren.fleet.blog.domain.User">
         insert into user (uname,upasswd) values (#{uname},#{upasswd});
     </insert>
     <!--update user-->
-    <update id="update" parameterType="com.warren.fleet.blog.model.User">
+    <update id="update" parameterType="com.warren.fleet.blog.domain.User">
         update user set uname=#{uname},upasswd=#{upasswd} where uid = #{uid};
     </update>
 </mapper>

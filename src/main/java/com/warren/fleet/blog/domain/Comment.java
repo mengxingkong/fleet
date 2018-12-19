@@ -1,4 +1,4 @@
-package com.warren.fleet.blog.model;
+package com.warren.fleet.blog.domain;
 
 public class Comment {
 

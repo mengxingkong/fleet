@@ -4,7 +4,7 @@ package com.warren.fleet.security.domain;
  * Created by yangyibo on 17/1/17.
  */
 
-public class Role {
+public class SysRole {
 
     private Integer rid;
     private String rname;
@@ -23,10 +23,5 @@ public class Role {
 
     public void setRname(String rname) {
         this.rname = rname;
-    }
-
-    @Override
-    public String toString() {
-        return this.rname;
     }
 }

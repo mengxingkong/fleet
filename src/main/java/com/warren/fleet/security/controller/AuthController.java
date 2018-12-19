@@ -1,9 +1,9 @@
 package com.warren.fleet.security.controller;
 
-import com.warren.fleet.security.domain.User;
+import com.warren.fleet.security.domain.SysUser;
 import com.warren.fleet.security.requestBody.JwtAuthenticationRequest;
 import com.warren.fleet.security.response.JwtAuthenticationResponse;
-import com.warren.fleet.security.service.AuthService;
+import com.warren.fleet.security.service.AuthServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +24,7 @@ public class AuthController {
     private String tokenHeader;
 
     @Autowired
-    private AuthService authService;
+    private AuthServiceImpl authService;
 
     @RequestMapping("/login")
     public String loginPage(){
@@ -55,7 +55,7 @@ public class AuthController {
     }
 
     @RequestMapping("/register")
-    public User register(@RequestBody User addedUser)
+    public SysUser register(@RequestBody SysUser addedUser)
             throws AuthenticationException{
         return authService.register(addedUser);
     }

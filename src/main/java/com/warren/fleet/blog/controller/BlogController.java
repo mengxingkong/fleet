@@ -1,7 +1,7 @@
 package com.warren.fleet.blog.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.warren.fleet.blog.model.Blog;
+import com.warren.fleet.blog.domain.Blog;
 import com.warren.fleet.blog.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

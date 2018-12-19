@@ -1,8 +1,8 @@
 package com.warren.fleet.security.service;
 
-import com.warren.fleet.security.domain.User;
+import com.warren.fleet.security.domain.SysUser;
 import com.warren.fleet.security.jwt.JwtUserFactory;
-import com.warren.fleet.security.dao.UserDao;
+import com.warren.fleet.security.dao.SysUserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,12 +13,12 @@ import org.springframework.stereotype.Component;
 public class MyUserDetailService implements UserDetailsService {
 
     @Autowired
-    private UserDao userDao;
+    private SysUserDao userDao;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user = userDao.findByUserName(username);
+        SysUser user = userDao.findByUserName(username);
         if(null == user){
             throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
 
