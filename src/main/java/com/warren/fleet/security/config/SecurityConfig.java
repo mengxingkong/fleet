@@ -1,7 +1,7 @@
 package com.warren.fleet.security.config;
 
 
-import com.warren.fleet.security.filter.JwtAuthenticationTokenFilter;
+import com.warren.fleet.security.jwt.JwtAuthenticationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,26 +27,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationProvider provider;
 
     @Autowired
-    private AuthenticationSuccessHandler myAuthenticationSuccessHandler;
+    private AuthenticationSuccessHandler AuthenticationSuccessHandler;
     @Autowired
-    private AuthenticationFailureHandler myAuthenticationFailHander;
+    private AuthenticationFailureHandler AuthenticationFailHander;
 
     @Autowired
-    private LogoutSuccessHandler myLogoutSuccessHandler;
+    private LogoutSuccessHandler LogoutSuccessHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.
                 formLogin().loginPage("/auth/login").loginProcessingUrl("/login/form")
-                .successHandler(myAuthenticationSuccessHandler)
-                .failureHandler(myAuthenticationFailHander)
+                .successHandler(AuthenticationSuccessHandler)
+                .failureHandler(AuthenticationFailHander)
                 .permitAll()
                 .and()
                 .authorizeRequests().antMatchers("/auth/**","/auth/*","/auth/refresh","/blog/showBlog", "/blog/allBlogs").permitAll()
                 .anyRequest().authenticated()
                 .and()
 
-                .logout().logoutUrl("/logout").logoutSuccessHandler(myLogoutSuccessHandler)
+                .logout().logoutUrl("/logout").logoutSuccessHandler(LogoutSuccessHandler)
                 .and()
                 .csrf().disable();
         //http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);

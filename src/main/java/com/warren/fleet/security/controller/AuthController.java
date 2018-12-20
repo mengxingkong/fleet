@@ -1,18 +1,14 @@
 package com.warren.fleet.security.controller;
 
 import com.warren.fleet.security.domain.SysUser;
-import com.warren.fleet.security.requestBody.JwtAuthenticationRequest;
-import com.warren.fleet.security.response.JwtAuthenticationResponse;
+import com.warren.fleet.security.jwt.JwtAuthenticationResponse;
 import com.warren.fleet.security.service.AuthServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,16 +22,16 @@ public class AuthController {
     @Autowired
     private AuthServiceImpl authService;
 
-    @RequestMapping("/login")
+    @RequestMapping("/login/before")
     public String loginPage(){
         return "please login";
     }
 
 
-    @RequestMapping("/login/form")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest)
+    @PostMapping("/login")
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody SysUser user)
             throws AuthenticationException {
-        final String token = authService.login(authenticationRequest.getUsername(),authenticationRequest.getPassword());
+        final String token = authService.login(user.getUname(),user.getUpasswd());
 
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
     }
@@ -54,20 +50,21 @@ public class AuthController {
         }
     }
 
+    @PreAuthorize("hasRole(''USER)")
     @RequestMapping("/register")
-    public SysUser register(@RequestBody SysUser addedUser)
+    public String register(@RequestBody SysUser addedUser)
             throws AuthenticationException{
-        return authService.register(addedUser);
+        return authService.regisiter(addedUser);
     }
 
 
-    @RequestMapping("/success")
-    public Object success(){
-        return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    }
-
-    @RequestMapping("/error")
-    public String error(){
-        return "login_error";
-    }
+//    @RequestMapping("/success")
+//    public Object success(){
+//        return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    }
+//
+//    @RequestMapping("/error")
+//    public String error(){
+//        return "login_error";
+//    }
 }

@@ -1,9 +1,13 @@
-package com.warren.fleet.security.filter;
+package com.warren.fleet.security.jwt;
 
+import com.warren.fleet.common.util.CurrentTimeUtil;
+import com.warren.fleet.security.dao.SysUserDao;
+import com.warren.fleet.security.domain.SysUser;
 import com.warren.fleet.security.jwt.JwtTokenUtil;
-import com.warren.fleet.security.service.MyUserDetailService;
+import com.warren.fleet.security.service.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.AuthenticationDetailsSource;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,15 +19,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
 
     @Autowired
-    private MyUserDetailService userDetailService;
+    private UserDetailService userDetailService;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+
+    @Autowired
+    private SysUserDao userDao;
 
     @Value("${jwt.header}")
     private String tokenHeader;
@@ -36,21 +44,28 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             HttpServletRequest request,
             HttpServletResponse response,
             FilterChain chain) throws ServletException, IOException {
-        String authToken = request.getHeader(this.tokenHeader);
-        if (authToken != null) {
+        //取token
+        String token = request.getHeader(this.tokenHeader);
 
-            String username = jwtTokenUtil.getUsernameFromToken(authToken);
+        //处理token
+        if (token != null) {
+            String username = jwtTokenUtil.generateUserNameFromToken(token);
+            String role = jwtTokenUtil.getTokenRoleFromToken(token);
             logger.info("checking authentication " + username);
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = this.userDetailService.loadUserByUsername(username);
-                if (jwtTokenUtil.validateToken(authToken, userDetails)) {
-
-                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken( userDetails, null, userDetails.getAuthorities());
-                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    logger.info("authenticated user " + username + ", setting security context");
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                //获取最近更新时间，判断token是否有效
+                try {
+                    SysUser user = userDao.findByUserName(username);
+                    Date lastmodified = CurrentTimeUtil.prase(user.getLastmodified());
+                    if(jwtTokenUtil.validateToken(token,lastmodified)){
+                        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
+                        authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                    }
+                }catch (Exception e){
+                    logger.info("时间格式错误");
                 }
-
             }
         }
         chain.doFilter(request, response);

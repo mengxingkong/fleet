@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface SysUserDao {
     public SysUser findByUserName(String username);
     public SysUser findUserOnlyByName(String username);
-    public void insertUser(SysUser user);
-    public void insertUserRole(int uid, int rid);
+    public void addUser(String uname,String upasswd,String lastmodified);
 }

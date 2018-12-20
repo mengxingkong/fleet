@@ -1,6 +1,9 @@
 package com.warren.fleet.security.service;
 
-public interface AuthService {
-    public
+import com.warren.fleet.security.domain.SysUser;
 
+public interface AuthService {
+    String regisiter(SysUser user);
+    String login(String uname,String upasswd);
+    String refresh(String oldtoken);
 }

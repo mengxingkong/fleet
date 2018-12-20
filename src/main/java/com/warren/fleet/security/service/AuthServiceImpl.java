@@ -1,5 +1,9 @@
 package com.warren.fleet.security.service;
 
+import com.alibaba.fastjson.JSON;
+import com.warren.fleet.common.domain.MsgResult;
+import com.warren.fleet.common.util.CurrentTimeUtil;
+import com.warren.fleet.security.dao.SysRoleDao;
 import com.warren.fleet.security.domain.SysUser;
 import com.warren.fleet.security.jwt.JwtTokenUtil;
 import com.warren.fleet.security.jwt.JwtUser;
@@ -12,58 +16,77 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
-public class AuthServiceImpl {
-
-    private AuthenticationManager authenticationManager;
-    private MyUserDetailService userDetailsService;
-    private JwtTokenUtil jwtTokenUtil;
-    private SysUserDao userRepository;
-    private UserRoleService userRoleService;
-
-    @Value("${jwt.tokenHead}")
-    private String tokenHead;
+public class AuthServiceImpl implements AuthService {
 
     @Autowired
-    public AuthServiceImpl(AuthenticationManager authenticationManager,
-                           MyUserDetailService userDetailsService,
-                           JwtTokenUtil jwtTokenUtil,
-                           SysUserDao userRepository) {
-        this.authenticationManager = authenticationManager;
-        this.userDetailsService = userDetailsService;
-        this.jwtTokenUtil = jwtTokenUtil;
-        this.userRepository = userRepository;
-    }
+    private AuthenticationManager authenticationManager;
 
-    public SysUser register(SysUser user){
-        final String username = user.getUname();
-        if(userRepository.findUserOnlyByName(username)!=null){
-            return null;
+    @Autowired
+    private UserDetailService userDetailsService;
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+
+    @Autowired
+    private SysUserDao userDao;
+
+    @Autowired
+    private SysRoleDao roleDao;
+
+    @Autowired
+    MsgResult msg;
+
+    @Override
+    public String regisiter(SysUser user) {
+        if( userDao.findByUserName(user.getUname())==null ){
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            user.setUpasswd( encoder.encode(user.getUpasswd()) );
+            userDao.addUser(user.getUname(),user.getUpasswd(), CurrentTimeUtil.format(new Date()));
+            roleDao.addUserRoleByName(user.getUname(), "ROLE_USER");
+            msg.setStatus("ok");
+            msg.setContent("register success,please login");
+            return JSON.toJSONString( msg );
         }
-        return userRoleService.inserUserRole(user,"ROLE_USER");
-    }
-
-    public String login(String username,String password){
-        UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(username, password);
-        final Authentication authentication = authenticationManager.authenticate(upToken);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        final String token = jwtTokenUtil.generateAccessToken(userDetails);
-        return token;
-    }
-
-    public String refresh(String oldToken) {
-        final String token = oldToken.substring(tokenHead.length());
-        String username = jwtTokenUtil.getUsernameFromToken(token);
-        JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
-        System.out.println(user.getUsername()+"****************");
-        int a = 1+2;
-        if (user!=null){
-            return jwtTokenUtil.refreshToken(token);
+        else{
+            msg.setStatus("already exist");
+            msg.setContent("this username has already register");
+            return JSON.toJSONString( msg );
         }
-        return null;
+
     }
 
+    @Override
+    public String login(String uname, String upasswd) {
+        UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(uname,upasswd);
+        try{
+            final Authentication authentication  = authenticationManager.authenticate(upToken);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            final UserDetails userDetails = userDetailsService.loadUserByUsername(uname);
+            final String token = jwtTokenUtil.generateToken(userDetails);
+            return token;
+        }catch (Exception e){
+            return "{status:fail to generate token }";
+        }
+    }
+
+    @Override
+    public String refresh(String oldtoken) {
+        String uname = jwtTokenUtil.generateUserNameFromToken(oldtoken);
+        try{
+            UserDetails userDetails = userDetailsService.loadUserByUsername(uname);
+            Date lastmodified = CurrentTimeUtil.prase(userDao.findByUserName(uname).getLastmodified());
+            if(userDetails!=null && jwtTokenUtil.canTokenBeRefresh(oldtoken,lastmodified)){
+                return jwtTokenUtil.refreshToken(userDetails);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "failed to refresh token";
+    }
 }

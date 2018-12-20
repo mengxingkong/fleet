@@ -12,4 +12,6 @@ public interface SysRoleDao {
 
     public List<SysRole> getRoles();
 
+    public void addUserRoleByName(String uname,String rolename);
+
 }

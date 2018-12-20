@@ -1,12 +1,15 @@
 package com.warren.fleet.security.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by yangyibo on 17/1/17.
  */
 
-public class SysUser {
+public class SysUser implements Serializable {
+
+    private static final long serialVersionUID = -5795324543331170824L;
     private Integer uid;
     private String uname;
     private String upasswd;

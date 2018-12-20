@@ -16,7 +16,7 @@ import java.util.Collection;
 public class MyAuthenticationProvider implements AuthenticationProvider {
 
     @Autowired
-    private MyUserDetailService userDetailService;
+    private UserDetailService userDetailService;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -43,7 +43,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
 //        User user = (UserInfo) userDetailService.loadUserByUsername(userName); // 这里调用我们的自己写的获取用户的方法；
 //        if (userInfo == null) {
 //            throw new BadCredentialsException("用户名不存在");
-//        }
+//        }d
 //
 //
 //        if (!userInfo.getPassword().equals(password)) {

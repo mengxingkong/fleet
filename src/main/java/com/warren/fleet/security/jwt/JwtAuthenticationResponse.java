@@ -1,4 +1,4 @@
-package com.warren.fleet.security.response;
+package com.warren.fleet.security.jwt;
 
 import java.io.Serializable;
 
