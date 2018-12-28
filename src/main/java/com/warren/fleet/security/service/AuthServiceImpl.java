@@ -4,12 +4,13 @@ import com.alibaba.fastjson.JSON;
 import com.warren.fleet.common.domain.MsgResult;
 import com.warren.fleet.common.util.CurrentTimeUtil;
 import com.warren.fleet.security.dao.SysRoleDao;
+import com.warren.fleet.security.dao.SysUserRoleDao;
+import com.warren.fleet.security.domain.ResetPwd;
 import com.warren.fleet.security.domain.SysUser;
 import com.warren.fleet.security.jwt.JwtTokenUtil;
-import com.warren.fleet.security.jwt.JwtUser;
 import com.warren.fleet.security.dao.SysUserDao;
+import org.hibernate.annotations.NaturalId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -28,7 +29,7 @@ public class AuthServiceImpl implements AuthService {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserDetailService userDetailsService;
+    private CustomDetailService userDetailsService;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -40,6 +41,9 @@ public class AuthServiceImpl implements AuthService {
     private SysRoleDao roleDao;
 
     @Autowired
+    private SysUserRoleDao userRoleDao;
+
+    @Autowired
     MsgResult msg;
 
     @Override
@@ -48,7 +52,7 @@ public class AuthServiceImpl implements AuthService {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             user.setUpasswd( encoder.encode(user.getUpasswd()) );
             userDao.addUser(user.getUname(),user.getUpasswd(), CurrentTimeUtil.format(new Date()));
-            roleDao.addUserRoleByName(user.getUname(), "ROLE_USER");
+            userRoleDao.addUserRoleByName(user.getUname(), "ROLE_USER");
             msg.setStatus("ok");
             msg.setContent("register success,please login");
             return JSON.toJSONString( msg );
@@ -71,6 +75,7 @@ public class AuthServiceImpl implements AuthService {
             final String token = jwtTokenUtil.generateToken(userDetails);
             return token;
         }catch (Exception e){
+            e.printStackTrace();
             return "{status:fail to generate token }";
         }
     }
@@ -88,5 +93,14 @@ public class AuthServiceImpl implements AuthService {
             e.printStackTrace();
         }
         return "failed to refresh token";
+    }
+
+    @Override
+    public String resetPasswd(ResetPwd resetPwd){
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        userDao.resetPasswd(resetPwd.getUname(), encoder.encode( resetPwd.getNewpasswd() ),CurrentTimeUtil.format(new Date()));
+        msg.setStatus("ok");
+        msg.setContent("reset passwd success");
+        return JSON.toJSONString(msg);
     }
 }

@@ -9,6 +9,7 @@
         <id column="uid" property="uid" />
         <result column="uname" property="uname"/>
         <result column="upasswd" property="upasswd"/>
+        <result column="lastmodified" property="lastmodified" />
         <collection property="roles" ofType="com.warren.fleet.security.domain.SysRole">
             <result column="rname" property="rname"/>
         </collection>
@@ -16,22 +17,35 @@
 
     <select id="findByUserName" parameterType="String" resultMap="userMap">
         select *
-        from user
-        left join user_role on user.uid = user_role.uid
-        left join role on user_role.rid = role.rid
-        where user.uname = #{username};
+        from sys_user
+        left join sys_user_role on sys_user.uid = sys_user_role.uid
+        left join sys_role on sys_user_role.rid = sys_role.rid
+        where sys_user.uname = #{username};
     </select>
 
     <select id="findUserOnlyByName" parameterType="String" resultType="com.warren.fleet.security.domain.SysUser">
-        select * from user where uname = #{username};
+        select * from sys_user where uname = #{username};
     </select>
 
+
+    <insert id="addUser" parameterType="String" keyProperty="uid" useGeneratedKeys="true">
+        insert
+        into sys_user(uname,upasswd,lastmodified)
+        values (#{param1},#{param2},#{param3})
+    </insert>
+
     <insert id="insertUser" parameterType="com.warren.fleet.security.domain.SysUser">
-        insert into user (uname,upasswd) values (#{uname},#{upasswd});
+        insert into sys_user (uname,upasswd) values (#{param1},#{param2});
     </insert>
 
     <insert id="insertUserRole" parameterType="int">
         insert into user_role (uid,rid) values (#{uid},#{rid});
     </insert>
+
+    <update id="resetPasswd" useGeneratedKeys="true" keyProperty="uid" parameterType="String">
+        update sys_user
+        set upasswd = #{param2},lastmodified = #{param3}
+        where uname=#{param1}
+    </update>
 
 </mapper>

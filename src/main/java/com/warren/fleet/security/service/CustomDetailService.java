@@ -14,14 +14,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class UserDetailService implements UserDetailsService {
+public class CustomDetailService implements UserDetailsService {
 
     @Autowired
-    private SysUserDao userDao;
+    private SysUserDao sysUserDao;
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        SysUser user = userDao.findByUserName(username);
+        SysUser user = sysUserDao.findByUserName(username);
         if(null == user){
             throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
 

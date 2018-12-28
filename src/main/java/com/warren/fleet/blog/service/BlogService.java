@@ -11,21 +11,4 @@ import java.util.Date;
 @Service
 public class BlogService {
 
-    @Autowired
-    private BlogDao blogDao;
-
-    public void addBlog(Blog blog){
-        blog.setCommittime(CurrentTimeUtil.format( new Date() ));
-        blog.setUpdatetime( CurrentTimeUtil.format( new Date() ) );
-        blogDao.insert(blog);
-    }
-
-    public void updateBlog(Blog blog){
-        blog.setUpdatetime( CurrentTimeUtil.format( new Date() ) );
-        blogDao.update(blog);
-    }
-
-    public Blog selectBlogByBid(String bioid){
-        return blogDao.selectBlogByBloid( bioid );
-    }
 }

@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@Component("myAuthenticationFailHander")
+@Component
 public class AuthenticationFailHander extends SimpleUrlAuthenticationFailureHandler {
     @Autowired
     private ObjectMapper objectMapper;

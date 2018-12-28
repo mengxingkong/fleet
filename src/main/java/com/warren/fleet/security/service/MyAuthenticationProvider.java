@@ -16,7 +16,7 @@ import java.util.Collection;
 public class MyAuthenticationProvider implements AuthenticationProvider {
 
     @Autowired
-    private UserDetailService userDetailService;
+    private CustomDetailService userDetailService;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {

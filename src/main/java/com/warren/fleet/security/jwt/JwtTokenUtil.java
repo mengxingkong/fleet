@@ -124,7 +124,7 @@ public class JwtTokenUtil implements Serializable{
         Map<String,Object> claims = new HashMap<>();
         claims.put(CLAIM_KEY_USERNAME,userDetails.getUsername());
         claims.put(CLAIM_KEY_CREATED,new Date());
-        claims.put((CLAIM_KEY_ROLES,userDetails.getAuthorities()));
+        claims.put(CLAIM_KEY_ROLES,userDetails.getAuthorities());
         return generateToken(claims);
     }
 
@@ -132,7 +132,7 @@ public class JwtTokenUtil implements Serializable{
         return Jwts.builder()
                 .setClaims(claims)
                 .setExpiration( generateExpirationDate() )
-                .signWith(SignatureAlgorithm.ES256,secret)
+                .signWith(SignatureAlgorithm.HS512,secret)
                 .compact();
     }
 

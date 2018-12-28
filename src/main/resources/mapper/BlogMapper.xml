@@ -9,12 +9,12 @@
         <result column="author" property="author" />
         <result column="content" property="content" />
         <result column="title" property="title" />
-        <result column="committime" property="committimr" />
+        <result column="committime" property="committime" />
         <result column="updatetime" property="updatetime" />
     </resultMap>
 
 
-    <select id="selectBlogByBloid" parameterType="String" resultType="BlogMap">
+    <select id="selectBlogByBloid" parameterType="String" resultMap="BlogMap">
         select * from blog where bioid = #{param1};
     </select>
 
@@ -38,26 +38,26 @@
 
 
 
-    <!--保留之前 传入参数为对象的插入操作-->
-    <insert id="insert" parameterType="Blog">
-        insert into blog(title, content, author, f_time, l_time) values(#{title}, #{content}, #{author}, #{f_time},#{l_time});
-    </insert>
-    <!--保留之前 传入参数为对象的更新操作-->
-    <update id="update" parameterType="Blog">
-        update blog set title = #{title}, content=#{content},l_time = #{l_time} where bid = #{bid};
-    </update>
-    <!--保留之前写的用来执行多表连接查询的操作-->
-    <resultMap id="AuthorBlogs" type="Blog">
-        <id column="bid" property="bid" />
-        <result column="title" property="title"/>
-        <result column="content" property="content"/>
-        <result column="f_time" property="f_time"/>
-        <result column="l_time" property="l_time"/>
-        <association property="oneAuthor" javaType="User">
-            <id property="uid" column="uid"/>
-            <result column="uname" property="uname"/>
-            <result column="upasswd" property="upasswd"/>
-        </association>
-    </resultMap>
+    <!--&lt;!&ndash;保留之前 传入参数为对象的插入操作&ndash;&gt;-->
+    <!--<insert id="insert" parameterType="Blog">-->
+        <!--insert into blog(title, content, author, f_time, l_time) values(#{title}, #{content}, #{author}, #{f_time},#{l_time});-->
+    <!--</insert>-->
+    <!--&lt;!&ndash;保留之前 传入参数为对象的更新操作&ndash;&gt;-->
+    <!--<update id="update" parameterType="Blog">-->
+        <!--update blog set title = #{title}, content=#{content},l_time = #{l_time} where bid = #{bid};-->
+    <!--</update>-->
+    <!--&lt;!&ndash;保留之前写的用来执行多表连接查询的操作&ndash;&gt;-->
+    <!--<resultMap id="AuthorBlogs" type="Blog">-->
+        <!--<id column="bid" property="bid" />-->
+        <!--<result column="title" property="title"/>-->
+        <!--<result column="content" property="content"/>-->
+        <!--<result column="f_time" property="f_time"/>-->
+        <!--<result column="l_time" property="l_time"/>-->
+        <!--<association property="oneAuthor" javaType="User">-->
+            <!--<id property="uid" column="uid"/>-->
+            <!--<result column="uname" property="uname"/>-->
+            <!--<result column="upasswd" property="upasswd"/>-->
+        <!--</association>-->
+    <!--</resultMap>-->
 
 </mapper>

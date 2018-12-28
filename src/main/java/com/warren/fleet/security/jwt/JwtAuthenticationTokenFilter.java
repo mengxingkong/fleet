@@ -3,11 +3,9 @@ package com.warren.fleet.security.jwt;
 import com.warren.fleet.common.util.CurrentTimeUtil;
 import com.warren.fleet.security.dao.SysUserDao;
 import com.warren.fleet.security.domain.SysUser;
-import com.warren.fleet.security.jwt.JwtTokenUtil;
-import com.warren.fleet.security.service.UserDetailService;
+import com.warren.fleet.security.service.CustomDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.AuthenticationDetailsSource;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,7 +23,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
 
     @Autowired
-    private UserDetailService userDetailService;
+    private CustomDetailService userDetailService;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;

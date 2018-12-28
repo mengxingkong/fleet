@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface CommentDao {
-    public List<Comment> seletCommentByBlog(Blog blog);
-    public void insert(Comment comment);
+
 }

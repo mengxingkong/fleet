@@ -1,4 +1,4 @@
-package com.warren.fleet.common.redis.config;
+package com.warren.fleet.common.config;
 
 import com.alibaba.fastjson.support.spring.FastJsonRedisSerializer;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;

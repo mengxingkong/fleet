@@ -9,4 +9,5 @@ public interface SysUserDao {
     public SysUser findByUserName(String username);
     public SysUser findUserOnlyByName(String username);
     public void addUser(String uname,String upasswd,String lastmodified);
+    public void resetPasswd(String uname,String newpasswd,String lastmodified);
 }

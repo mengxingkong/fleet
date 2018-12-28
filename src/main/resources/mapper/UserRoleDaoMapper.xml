@@ -4,7 +4,7 @@
 
 
     <insert id="addUserRoleByName" parameterType="String" keyProperty="rid" useGeneratedKeys="true">
-       insert into sys_user_role(user_id,role_id)
+       insert into sys_user_role(uid,rid)
        values ((select uid from sys_user where uname = #{param1}), (select rid from sys_role where rname=#{param2}))
     </insert>
 

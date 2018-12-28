@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Component("myAuthenticationSuccessHandler")
+@Component
 public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
     @Autowired
     private ObjectMapper objectMapper;
