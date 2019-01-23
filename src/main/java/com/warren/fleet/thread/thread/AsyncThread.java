@@ -1,4 +1,4 @@
-package com.warren.fleet.test.thread;
+package com.warren.fleet.thread.thread;
 
 public class AsyncThread extends Thread {
 

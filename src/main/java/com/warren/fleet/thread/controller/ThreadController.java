@@ -1,7 +1,7 @@
-package com.warren.fleet.test.controller;
+package com.warren.fleet.thread.controller;
 
-import com.warren.fleet.test.thread.AsyncRunnable;
-import com.warren.fleet.test.thread.AsyncThread;
+import com.warren.fleet.thread.thread.AsyncRunnable;
+import com.warren.fleet.thread.thread.AsyncThread;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
