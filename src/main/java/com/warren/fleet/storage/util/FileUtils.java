@@ -21,6 +21,7 @@ public class FileUtils {
                 return null;
             }
             String parentFile = originFile.getParent();
+            //没有判断当文件 本身小于 bufsize 的情况
             int bufsize = 1024*1024*20;
             byte[] buf = new byte[bufsize];
             int readCount;

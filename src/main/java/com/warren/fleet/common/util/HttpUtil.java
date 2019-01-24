@@ -13,7 +13,7 @@ import java.util.Map;
 @Service
 public class HttpUtil {
 
-    public String sendPost(String url, String filePath, Map<String,String> headParams){
+    public String sendPost(String url, MultiValueMap<String,Object> requestParams, Map<String,String> headParams){
         try{
             RestTemplate restTemplate = new RestTemplate();
             HttpHeaders headers = new HttpHeaders();
@@ -21,10 +21,13 @@ public class HttpUtil {
                 headers.set(entry.getKey(),entry.getValue());
             }
             headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-            FileSystemResource resource = new FileSystemResource(new File(filePath));
-            MultiValueMap<String,Object> params = new LinkedMultiValueMap<>();
-            params.add("partfile",resource);
-            HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(params, headers);
+
+            //将参数的设置提取出去了
+//            FileSystemResource resource = new FileSystemResource(new File(filePath));
+//            MultiValueMap<String,Object> params = new LinkedMultiValueMap<>();
+//            params.add("partfile",resource);
+
+            HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(requestParams, headers);
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, request, String.class);
             return response.getBody();
         }catch (Exception e){
