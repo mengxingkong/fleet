@@ -23,4 +23,30 @@ public class CurrentTimeUtil {
     public static String format( Date date ){
         return threadLocal.get().format(date);
     }
+
+    public static String caculateduration(Date startTime, Date endTime ){
+        long dif = endTime.getTime()-startTime.getTime();
+        long secondsInMilli = 1000;
+        long minutesInMilli = secondsInMilli*60;
+        long hoursInMilli = minutesInMilli*60;
+        long daysInMilli = hoursInMilli*24;
+
+        long elapseDays = dif / daysInMilli;
+        if(elapseDays>0){
+            return elapseDays+"d";
+        }
+        dif %= daysInMilli;
+        long elapseHours = dif / hoursInMilli;
+        if(elapseHours>0){
+            return elapseHours+"h";
+        }
+        dif %= hoursInMilli;
+        long elapseMinutes = dif / minutesInMilli;
+        if(elapseMinutes>0){
+            return elapseMinutes+"m";
+        }
+        dif %= minutesInMilli;
+        long elapseSeconds = dif / secondsInMilli;
+        return elapseSeconds+"s";
+    }
 }
