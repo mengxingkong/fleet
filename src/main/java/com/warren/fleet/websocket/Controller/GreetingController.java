@@ -6,7 +6,9 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.HtmlUtils;
+
 @Controller
 public class GreetingController {
 
@@ -18,8 +20,9 @@ public class GreetingController {
     }
 
 
-    @GetMapping("/index")
+    @RequestMapping("/greeting/index")
     public String index(){
+        System.out.println("test");
         return "/index.html";
     }
 

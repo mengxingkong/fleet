@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http
-                .authorizeRequests().antMatchers("/auth/login","/auth/register","/blog/showBlog", "/blog/allBlogs","/index").permitAll()
+                .authorizeRequests().antMatchers("/auth/login","/auth/register","/blog/showBlog", "/blog/allBlogs","/greeting/index").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessHandler(LogoutSuccessHandler)
