@@ -2,6 +2,7 @@ package com.warren.fleet.common.config;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,6 +16,7 @@ public class MybatisConfig {
 
 
     @Autowired
+    @Qualifier("masterDataSource")
     private DataSource dataSource;
 
     @Bean(name = "sqlSessionFactory")
