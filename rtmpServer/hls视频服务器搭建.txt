@@ -1,0 +1,73 @@
+﻿Hls视频服务器的搭建
+
+
+环境配置：ubuntu+nginx+nginx-rtmp-module
+安装过程：（nginx编译安装）
+
+安装nginx依赖库
+sudo apt-get install libpcre3 libpcre3-dev
+sudo apt-get install openssl libssl-dev
+
+下载nginx-rtmp-module
+git 地址：https://github.com/arut/nginx-rtmp-module/releases
+下载命令：sudo wget -O nginx-rtmp-nginx.tar.gz https://codeload.github.com/arut/nginx-rtmp-module/tar.gz/v1.2.1
+tar -zxvf nginx-rtmp-nginx.tar.gz nginx-rtmp-nginx/
+
+
+下载nginx源码包
+sudo wget http://nginx.org/download/nginx-1.14.2.tar.gz
+tar -zxvf nginx-1.14.2.tar.gz nginx-1.14.2
+
+编译安装
+cd nginx-1.14.2
+./configure --add-module=../nginx-rtmp-module
+make
+sudo make install
+
+安装后的目录（ubuntu下）
+查询命令 whereis nginx
+/usr/local/nginx
+
+编辑配置文件
+vim /usr/local/nginx/conf/nginx.conf
+
+
+rtmp {
+    server {
+        listen 1935;
+
+        application live {
+            live on;
+        }
+
+        application hls {
+            live on;
+            hls on; 
+            hls_type event;
+            hls_path /video/hls;
+            hls_fragment 5s;
+            hls_cleanup off;
+            hls_nested on;
+        }
+    }
+}
+
+
+location /hls{
+	types {
+		application/vnd.apple.mpegurl m3u8;
+		video/mp2t ts;
+	}
+	alias /video/hls;  
+	expires -1;
+	add_header 'Access-Control-Allow-Origin' '*';
+	add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+}
+
+
+
+
+
+
+
+
